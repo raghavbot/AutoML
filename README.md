@@ -5,6 +5,7 @@
 [![Portfolio](https://img.shields.io/badge/Portfolio-neupanepujan.com.np-blue?style=flat-square&logo=globe)](https://neupanepujan.com.np)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&logo=python)](https://www.python.org)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red?style=flat-square&logo=streamlit)](https://streamlit.io)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-automlbypujan.streamlit.app-brightgreen?style=flat-square&logo=streamlit)](https://automlbypujan.streamlit.app/)
 
 An intelligent, end-to-end machine learning automation tool that handles **any kind of CSV data** with automatic cleaning, preprocessing, model selection, and evaluation.
 
@@ -56,6 +57,18 @@ An intelligent, end-to-end machine learning automation tool that handles **any k
 - Detailed summary reports with dataset information
 - Feature and target variable analysis
 - Actionable recommendations
+
+## 🌐 Live Demo
+
+**Try it now!** The app is deployed and ready to use:
+
+[![Streamlit App](https://img.shields.io/badge/Open%20Live%20Demo-automlbypujan.streamlit.app-brightgreen?style=for-the-badge&logo=streamlit)](https://automlbypujan.streamlit.app/)
+
+No installation required — just upload your CSV and start analyzing! The live demo includes:
+- ✅ Full functionality (data upload, cleaning, model training)
+- ✅ Light & Dark mode support
+- ✅ Sample datasets (iris.csv, air.csv) included
+- ✅ Instant results and visualizations
 
 ## 🚀 Quick Start
 
@@ -143,7 +156,7 @@ Then visit `http://localhost:8501` in your browser.
 ![AutoML Main Interface](screenshot/s1.png)
 ![AutoML Main Interface](screenshot/s2.png)
 ![AutoML Main Interface](screenshot/s3.png)
-![AutoML Main Interface](screenshot/s4.png)
+![AutoML Main Interface](screenshot/s.png)
 
 
 ## 📊 Sample Datasets
