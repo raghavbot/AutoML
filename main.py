@@ -74,9 +74,7 @@ with st.container():
 
 st.markdown("---")
 
-# ============================================
 # HELPER FUNCTIONS
-# ============================================
 
 @st.cache_data
 def load_data(file):
@@ -201,9 +199,7 @@ def auto_clean_data(df, target_col):
     st.success(f"✓ Data cleaning complete! Final dataset: {X.shape[0]} rows × {X.shape[1]} columns")
     return X, y, categorical_cols, numerical_cols
 
-# ============================================
 # 1. Upload CSV
-# ============================================
 st.sidebar.header("📁 Data Input")
 uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type=["csv"])
 
@@ -224,9 +220,7 @@ if uploaded_file:
             st.dataframe(df.head(10), use_container_width=True)
             st.write("**Data Types:**", df.dtypes.to_dict())
         
-        # ============================================
         # 2. Data Sampling for Large Datasets
-        # ============================================
         st.sidebar.header("⚙️ Data Options")
         
         # Check if dataset is large
@@ -256,9 +250,7 @@ if uploaded_file:
         else:
             df_working = df.copy()
         
-        # ============================================
         # 3. Column Selection
-        # ============================================
         st.sidebar.subheader("📋 Column Selection")
         
         # Show current columns
@@ -278,9 +270,9 @@ if uploaded_file:
                 st.write(f"**Remaining columns ({len(df_working.columns)}):**")
                 st.write(", ".join(df_working.columns))
         
-        # ============================================
+         
         # 4. Select target column
-        # ============================================
+         
         st.sidebar.header("🎯 Target Configuration")
         target_column = st.sidebar.selectbox("Select the target column", df_working.columns)
         
@@ -289,9 +281,9 @@ if uploaded_file:
         st.sidebar.success(f"📌 Problem Type: **{problem_type.upper()}**")
         
         if st.sidebar.button("🚀 Run AutoML", key="automl_button"):
-            # ============================================
+             
             # 5. Data Cleaning
-            # ============================================
+             
             st.header("📋 Step 1: Data Cleaning & Preprocessing")
             
             # Show what we're working with
@@ -299,9 +291,9 @@ if uploaded_file:
             
             X, y, categorical_cols, numerical_cols = auto_clean_data(df_working, target_column)
             
-            # ============================================
+             
             # 4. Check dataset size
-            # ============================================
+             
             if X.shape[0] < 10:
                 st.error("❌ Dataset too small! Need at least 10 samples.")
                 st.stop()
@@ -309,9 +301,9 @@ if uploaded_file:
             if X.shape[0] > 10000:
                 st.warning("⚠️ Dataset is large. Processing may take time...")
             
-            # ============================================
+             
             # 5. Build preprocessing pipeline
-            # ============================================
+             
             st.header("🔧 Step 2: Model Training")
             st.info("Building and training models with cross-validation...")
             
@@ -339,9 +331,9 @@ if uploaded_file:
             
             preprocessor = ColumnTransformer(transformers, remainder='drop', verbose=False) if transformers else None
             
-            # ============================================
+             
             # 6. Define models based on problem type
-            # ============================================
+             
             if problem_type == "classification":
                 models = {
                     "Logistic Regression": LogisticRegression(max_iter=1000, random_state=42),
@@ -366,9 +358,9 @@ if uploaded_file:
                 }
                 cv_strategy = KFold(n_splits=5, shuffle=True, random_state=42)
             
-            # ============================================
+             
             # 7. Split data
-            # ============================================
+             
             X_train, X_test, y_train, y_test = train_test_split(
                 X, y, test_size=0.2, random_state=42, 
                 stratify=y if problem_type == "classification" else None
@@ -376,9 +368,9 @@ if uploaded_file:
             
             st.success(f"✓ Train set: {X_train.shape[0]} | Test set: {X_test.shape[0]}")
             
-            # ============================================
+             
             # 8. Train and evaluate models
-            # ============================================
+             
             results = {}
             best_model_name = None
             best_score = -np.inf
@@ -484,9 +476,9 @@ if uploaded_file:
             progress_bar.empty()
             status_text.empty()
             
-            # ============================================
+             
             # 9. Display Results
-            # ============================================
+             
             st.header("📊 Step 3: Results & Analysis")
             
             results_df = pd.DataFrame(results).T
@@ -514,9 +506,9 @@ if uploaded_file:
                     fig.update_layout(height=400, showlegend=False)
                     st.plotly_chart(fig, use_container_width=True)
             
-            # ============================================
+             
             # 10. Download Results
-            # ============================================
+             
             st.header("💾 Step 4: Export Results")
             
             csv = results_df.to_csv()
