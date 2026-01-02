@@ -374,9 +374,20 @@ if uploaded_file:
              
             # 7. Split data
              
+
+            stratify_param = None
+            if problem_type == "classification":
+                # Check for rare classes that would break stratification
+                class_counts = y.value_counts()
+                if (class_counts < 2).any():
+                    st.warning("⚠️ Target classes with too few samples detected. Stratified splitting disabled.")
+                    stratify_param = None
+                else:
+                    stratify_param = y
+
             X_train, X_test, y_train, y_test = train_test_split(
                 X, y, test_size=0.2, random_state=42, 
-                stratify=y if problem_type == "classification" else None
+                stratify=stratify_param
             )
             
             st.success(f"✓ Train set: {X_train.shape[0]} | Test set: {X_test.shape[0]}")
